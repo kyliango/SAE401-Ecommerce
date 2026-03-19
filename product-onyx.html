@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONYX – Huile de Parfum | AURA</title>
+  <meta name="description"
+    content="ONYX par AURA. Une huile de parfum d'exception aux accords boisés, épicés et fumés. Découvrez la description olfactive et la pyramide aromatique.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+  <!-- Cart drawer removed -->
+
+
+  <!-- ── PRODUCT MAIN ── -->
+  <main class="page-content">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb container" aria-label="Fil d'ariane">
+      <a href="index.html" class="breadcrumb__item" data-transition>Accueil</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="collection.html" class="breadcrumb__item" data-transition>Parfums</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__item breadcrumb__item--current">Onyx</span>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="prod-hero">
+      <div class="prod-hero__img reveal-left">
+        <img src="./images/Onyx.png" alt="AURA Onyx – Huile de Parfum" id="mainProductImg">
+      </div>
+      <div class="prod-hero__info reveal-right">
+        <p class="prod-hero__brand label">AURA PARFUMS</p>
+        <h1 class="prod-hero__name serif">ONYX</h1>
+        <p class="prod-hero__type label" style="color:var(--text-light);font-size:10px;">Huile de Parfum</p>
+
+        <!-- Stars -->
+        <div class="prod-hero__stars" aria-label="Note : 4 étoiles sur 5">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <span class="prod-hero__reviews">(24 avis)</span>
+        </div>
+
+        <p class="prod-hero__desc">
+          Onyx ouvre sur un accord de bois d'oud profond rehaussé d'un nuage de fumée, d'une touche de cuir ambré et de
+          résines orientales. Un parfum d'une présence rare, conçu pour les âmes qui assument leur singularité.
+        </p>
+
+        <p class="prod-hero__price">180 €</p>
+
+        <!-- Sélecteur de contenance -->
+        <div class="size-selector">
+          <p class="label" style="font-size:10px; margin-bottom:8px; color:var(--text-light);">Contenance</p>
+          <div class="size-selector__options">
+            <button class="size-selector__btn active" data-size="50" data-price="180">50 ml</button>
+            <button class="size-selector__btn" data-size="30" data-price="150">30 ml</button>
+          </div>
+          <p class="prod-hero__size label" style="color:var(--text-light);font-size:9px;margin-top:8px;">50 ml – Huile
+            de Parfum</p>
+        </div>
+
+        <!-- Gravure personnalisée -->
+        <div class="prod-engraving" style="margin-bottom: 24px;">
+          <label for="engravingText" class="label"
+            style="font-size:10px; margin-bottom:8px; display:block; color:var(--text-light);">Gravure personnalisée
+            (Optionnel)</label>
+          <input type="text" id="engravingText" class="engraving-input"
+            placeholder="Initiales ou mot court (max 10 car.)" maxlength="10"
+            style="width:100%; padding:10px 16px; border:1px solid rgba(61,12,30,0.2); font-family:var(--font-serif); font-size:0.95rem; background:transparent; color:var(--text-dark); outline:none;">
+        </div>
+
+        <div class="prod-hero__actions">
+          <button class="btn btn-solid js-add-to-cart prod-hero__add" id="addToCartBtn" data-name="Onyx"
+            data-price="180" data-img="./images/Onyx.png" data-size="50ml">
+            <i class="fa-solid fa-bag-shopping"></i>
+            Ajouter au panier
+          </button>
+          
+        </div>
+
+        <p class="prod-hero__shipping label">
+          <i class="fa-solid fa-truck" style="margin-right:6px;"></i>
+          Livraison offerte dès 200€ d'achat
+        </p>
+      </div>
+    </section>
+
+    <!-- DESCRIPTION OLFACTIVE -->
+    <section class="prod-desc">
+      <div class="prod-desc__inner">
+        <div class="prod-desc__text reveal-left">
+          <h2 class="prod-desc__title serif">Description Olfactive</h2>
+          <p class="prod-desc__sub label" style="color:var(--gold);margin-bottom:24px;">Boisé & Épicé</p>
+          <p>
+            Certains parfums existent pour séduire. Onyx existe pour marquer. Inspiré des rites anciens et des encens
+            millénaires, il s'ouvre sur un accord de bois d'oud fumé d'une profondeur rare, avant de révéler peu à peu
+            un cœur charnel d'ambre, de cuir et de résines précieuses.
+          </p>
+          <p style="margin-top:16px;">
+            En fond, l'animal s'impose — castoreum, oud cambodgien, patchouli sombre et vanille boisée — dans une
+            harmonie brûlante, pleine et inoubliable.
+          </p>
+          <p style="margin-top:16px;">
+            L'art du parfum haute concentration, c'est cela : une formule plus intense, qui se porte au creux du
+            poignet, derrière les oreilles ou sur le sternum, pour libérer ses arômes au contact chaud de votre peau.
+          </p>
+          <ul class="prod-desc__notes">
+            <li>— Volume : 50 ml Huile de Parfum</li>
+            <li>— Concentration supérieure au Parfum</li>
+          </ul>
+        </div>
+        <div class="prod-desc__img reveal-right">
+          <img src="https://images.unsplash.com/photo-1583209814683-c4f26d4aa5f4?w=700&q=85&auto=format&fit=crop"
+            alt="AURA Onyx – flacon">
+        </div>
+      </div>
+    </section>
+
+    <!-- PYRAMIDE OLFACTIVE -->
+    <section class="prod-pyramid">
+      <h2 class="prod-pyramid__title serif reveal">Pyramide Olfactive</h2>
+      <div class="prod-pyramid__chart reveal">
+
+        <!-- Top notes -->
+        <div class="pyramid__row pyramid__row--top">
+          <div class="pyramid__shape pyramid__shape--top">
+            <div class="pyramid__label-above label">Notes de tête</div>
+            <svg viewBox="0 0 200 80" class="pyramid__svg">
+              <polygon points="100,0 170,80 30,80" fill="var(--burgundy)" opacity="0.9" />
+            </svg>
+            <div class="pyramid__notes">
+              <span>Bergamote</span>
+              <span>Cardamome</span>
+              <span>Poivre noir</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heart notes -->
+        <div class="pyramid__row pyramid__row--heart">
+          <div class="pyramid__shape pyramid__shape--heart">
+            <div class="pyramid__label-above label">Notes de cœur</div>
+            <svg viewBox="0 0 240 80" class="pyramid__svg">
+              <polygon points="120,0 210,80 30,80" fill="var(--burgundy)" opacity="0.75" />
+            </svg>
+            <div class="pyramid__notes">
+              <span>Rose</span>
+              <span>Oud</span>
+              <span>Cuir</span>
+              <span>Encens</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Base notes -->
+        <div class="pyramid__row pyramid__row--base">
+          <div class="pyramid__shape pyramid__shape--base">
+            <div class="pyramid__label-above label">Notes de fond</div>
+            <svg viewBox="0 0 290 80" class="pyramid__svg">
+              <polygon points="145,0 280,80 10,80" fill="var(--burgundy)" opacity="0.6" />
+            </svg>
+            <div class="pyramid__notes">
+              <span>Ambre</span>
+              <span>Vanille</span>
+              <span>Patchouli</span>
+              <span>Musc</span>
+              <span>Vétiver</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Add to cart CTA -->
+      <div class="prod-pyramid__cta reveal">
+        <button class="btn btn-solid js-add-to-cart" style="padding:16px 48px;font-size:10px;">
+          <i class="fa-solid fa-bag-shopping"></i>
+          Ajouter au panier — 190€
+        </button>
+      </div>
+    </section>
+
+    <!-- L'ART DU RITUEL -->
+    <section class="prod-ritual">
+      <div class="prod-ritual__header reveal">
+        <h2 class="serif" style="font-size:clamp(1.5rem,3vw,2.4rem);font-weight:300;letter-spacing:0.08em;">L'Art du
+          Rituel</h2>
+      </div>
+
+      <div class="prod-ritual__grid">
+        <!-- Image candle left -->
+        <div class="prod-ritual__img-a reveal-left">
+          <img src="./images/image 4 pp.png" alt="Bougie d'ambiance – rituel AURA">
+        </div>
+        <!-- Text + image right -->
+        <div class="prod-ritual__right">
+          <div class="prod-ritual__text reveal-right">
+            <p class="section-label" style="margin-bottom:20px;">Le rituel</p>
+            <p>
+              Le parfum n'est pas un simple accessoire — c'est un rituel. Appliquez Onyx sur les points de chaleur de
+              votre corps : les poignets, la nuque, le sternum. Laissez votre peau respirer, et regardez les accords se
+              transformer au fil des heures. Chaque sillage est différent, chaque porteur devient unique.
+            </p>
+            <p style="margin-top:16px;">
+              Pour sublimer votre expérience, portez Onyx avec la Bougie d'Ambiance Onyx — une invitation à habiter
+              l'espace de ce même parfum, pour que l'instant devienne souvenir.
+            </p>
+          </div>
+          <div class="prod-ritual__img-b reveal-right" style="transition-delay:0.15s">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=700&q=85&auto=format&fit=crop"
+              alt="Application parfum sur le poignet">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMMANDATIONS -->
+    <section class="prod-reco">
+      <h2 class="prod-reco__title serif reveal">Vous aimerez aussi</h2>
+      <div class="prod-reco__grid">
+
+        <article class="reco-card reveal">
+          <a href="collection.html#golden-hour" class="reco-card__link" data-transition>
+            <div class="reco-card__img">
+              <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80&auto=format&fit=crop"
+                alt="Golden Hour">
+            </div>
+            <div class="reco-card__info">
+              <p class="reco-card__set label">Golden Hour</p>
+              <p class="reco-card__name serif">L'ultime Désir</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="reco-card reveal" style="transition-delay:0.1s">
+          <a href="collection.html#eclipse" class="reco-card__link" data-transition>
+            <div class="reco-card__img">
+              <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&q=80&auto=format&fit=crop"
+                alt="L'Éclipse">
+            </div>
+            <div class="reco-card__info">
+              <p class="reco-card__set label">L'Éclipse</p>
+              <p class="reco-card__name serif">Ombre et Lumière</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Inscrivez-vous à notre Newsletter et recevez les dernières<br>actualités sur les fragrances AURA</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="#" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

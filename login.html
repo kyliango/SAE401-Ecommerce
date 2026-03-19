@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion – AURA Parfums</title>
+  <meta name="description" content="Connectez-vous à votre compte AURA pour accéder à votre espace personnel et suivre vos commandes.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon active-icon" data-transition>
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+
+  <!-- Page -->
+  <main class="page-content login-page">
+    <div class="login-wrap">
+
+      <!-- Left: editorial image -->
+      <div class="login-img reveal-left">
+        <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=90&auto=format&fit=crop" alt="Flacon AURA – ambiance">
+        <div class="login-img__overlay">
+          <p class="login-img__quote serif">« Le parfum est la forme<br>la plus intense de la mémoire. »</p>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="login-form-side reveal-right">
+
+        <!-- Toggle tabs -->
+        <div class="login-tabs">
+          <button class="login-tab login-tab--active" id="tabLogin" onclick="switchTab('login')">Connexion</button>
+          <button class="login-tab" id="tabRegister" onclick="switchTab('register')">Créer un compte</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form class="login-form" id="formLogin" onsubmit="handleLogin(event)">
+          <div class="login-brand serif">AURA</div>
+          <h1 class="login-title serif">Bon retour.</h1>
+          <p class="login-sub">Connectez-vous pour accéder à votre espace personnel.</p>
+
+          <div class="form-group">
+            <label class="form-label label" for="email">Adresse e-mail</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="email@exemple.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label label" for="password">Mot de passe</label>
+            <div class="form-input-wrap">
+              <input class="form-input" type="password" id="password" name="password" placeholder="••••••••" required>
+              <button type="button" class="form-eye" onclick="togglePwd('password')" aria-label="Afficher le mot de passe">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-options">
+            <label class="login-remember">
+              <input type="checkbox" id="remember"> Se souvenir de moi
+            </label>
+            <a href="#" class="login-forgot">Mot de passe oublié ?</a>
+          </div>
+
+          <button type="submit" class="btn btn-solid login-btn">
+            Se connecter
+          </button>
+
+          <div class="login-divider"><span>ou continuer avec</span></div>
+
+          <div class="login-socials">
+            <button type="button" class="social-btn">
+              <i class="fa-brands fa-google"></i> Google
+            </button>
+            <button type="button" class="social-btn">
+              <i class="fa-brands fa-apple"></i> Apple
+            </button>
+          </div>
+
+          <p class="login-switch">Pas encore de compte ? <button type="button" onclick="switchTab('register')" class="login-switch-link">Créer un compte</button></p>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form class="login-form" id="formRegister" style="display:none;" onsubmit="handleRegister(event)">
+          <div class="login-brand serif">AURA</div>
+          <h1 class="login-title serif">Rejoignez AURA.</h1>
+          <p class="login-sub">Créez votre compte pour une expérience personnalisée.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label label" for="prenom">Prénom</label>
+              <input class="form-input" type="text" id="prenom" placeholder="Prénom" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label label" for="nom">Nom</label>
+              <input class="form-input" type="text" id="nom" placeholder="Nom" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label label" for="emailReg">Adresse e-mail</label>
+            <input class="form-input" type="email" id="emailReg" placeholder="email@exemple.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label label" for="passwordReg">Mot de passe</label>
+            <div class="form-input-wrap">
+              <input class="form-input" type="password" id="passwordReg" placeholder="Minimum 8 caractères" required>
+              <button type="button" class="form-eye" onclick="togglePwd('passwordReg')" aria-label="Afficher le mot de passe">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="login-newsletter">
+              <input type="checkbox" id="newsletter" checked>
+              Recevoir les nouveautés et offres exclusives AURA
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-solid login-btn">
+            Créer mon compte
+          </button>
+
+          <p class="login-switch">Déjà un compte ? <button type="button" onclick="switchTab('login')" class="login-switch-link">Se connecter</button></p>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    function switchTab(tab) {
+      const formLogin    = document.getElementById('formLogin');
+      const formRegister = document.getElementById('formRegister');
+      const tabLogin     = document.getElementById('tabLogin');
+      const tabRegister  = document.getElementById('tabRegister');
+      if (tab === 'login') {
+        formLogin.style.display = 'flex';
+        formRegister.style.display = 'none';
+        tabLogin.classList.add('login-tab--active');
+        tabRegister.classList.remove('login-tab--active');
+      } else {
+        formLogin.style.display = 'none';
+        formRegister.style.display = 'flex';
+        tabRegister.classList.add('login-tab--active');
+        tabLogin.classList.remove('login-tab--active');
+      }
+    }
+    function togglePwd(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+    function handleLogin(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.login-btn');
+      btn.textContent = '✓ Connecté';
+      btn.style.background = '#5a1630';
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+    }
+    function handleRegister(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.login-btn');
+      btn.textContent = '✓ Compte créé !';
+      btn.style.background = '#5a1630';
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+    }
+  </script>
+</body>
+</html>

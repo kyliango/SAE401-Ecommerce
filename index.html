@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA – L'Élégance du Silence</title>
+  <meta name="description"
+    content="AURA – Parfums de niche d'exception. Découvrez notre collection de fragrances luxueuses, créées pour les âmes rares.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav nav--dark" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+
+  <!-- Cart drawer removed - click goes to panier.html instead -->
+
+  <!-- ── HERO ── -->
+  <section class="hero page-content--dark">
+    <div class="hero__media">
+      <video autoplay muted loop playsinline>
+        <source src="images/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <p class="hero__brand label reveal">AURA PARFUMS</p>
+      <h1 class="hero__title h-display reveal">L'ÉLÉGANCE<br><em>DU SILENCE.</em></h1>
+      <a href="collection.html" class="btn btn-outline btn-cream hero__cta reveal" data-transition>Découvrir la
+        collection</a>
+    </div>
+  </section>
+
+  <!-- ── INTRO ── -->
+  <section class="intro">
+    <div class="container">
+      <p class="intro__text reveal">
+        Nous avons banni l'alcool, bruyant et volatile, pour revenir à l'essence du <br>
+        parfum. Nos huiles rares fusionnent avec votre peau pour une tenue <br>
+        inégalée et une diffusion confidentielle. Un secret entre vous et ceux que <br>
+        vous laissez approcher.
+      </p>
+      <br>
+      <br>
+      <br>
+      <h1>LES QUATRE SIGNATURES.</h1>
+    </div>
+  </section>
+
+  <!-- ── COLLECTION GRID ── -->
+  <section class="home-collection">
+    <div class="home-collection__grid">
+
+      <article class="product-card reveal">
+        <a href="product-onyx.html" class="product-card__link" data-transition>
+          <div class="product-card__img">
+            <img src="./images/Onyx.png" alt="AURA Onyx">
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name serif">Onyx</h3>
+            <p class="product-card__type label">Huile de Parfum</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="product-card reveal" style="transition-delay:0.1s">
+        <a href="product-charnelle.html" class="product-card__link" data-transition>
+          <div class="product-card__img">
+            <img src="./images/AURA CHARNEL 1.png" alt="AURA Charnelle">
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name serif">Aura Charnel</h3>
+            <p class="product-card__type label">Huile de Parfum</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="product-card reveal" style="transition-delay:0.2s">
+        <a href="product-rose.html" class="product-card__link" data-transition>
+          <div class="product-card__img">
+            <img src="./images/ROSE IMPERIALE 1.png" alt="AURA Rose Incarnée">
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name serif">Rose Impériale</h3>
+            <p class="product-card__type label">Huile de Parfum</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="product-card reveal" style="transition-delay:0.3s">
+        <a href="product-elixir.html" class="product-card__link" data-transition>
+          <div class="product-card__img">
+            <img src="./images/Group 17 1.png" alt="AURA Élixir Prohé">
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name serif">Élixir Prohibé</h3>
+            <p class="product-card__type label">Huile de Parfum</p>
+          </div>
+        </a>
+      </article>
+
+    </div>
+
+    <div class="home-collection__cta reveal">
+      <a href="collection.html" class="btn btn-solid" data-transition>Explorer tous les fragrances</a>
+    </div>
+  </section>
+
+  <!-- ── COFFRET ── -->
+  <section class="coffret">
+    <div class="coffret__inner">
+      <div class="coffret__img reveal-left">
+        <img src="./images/prelude format carre.png" alt="Coffret AURA Le Prélude">
+      </div>
+      <div class="coffret__content reveal-right">
+        <h2 class="section-label">Le Prélude</h2>
+        <p>Avant de choisir votre signature éternelle, apprivoisez nos<br>
+          quatre créations. Un coffret découverte<br>
+          d'exception pour vous initier à l'art du geste AURA.</p>
+        <a href="product-coffret.html" class="btn btn-outline" data-transition>Commander le coffret</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Inscrivez-vous à notre Newsletter et recevez les dernières<br>actualités sur les fragrances AURA</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="mentions-legales.html" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

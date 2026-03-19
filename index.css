@@ -1,0 +1,260 @@
+/* ================================================
+   AURA – index.css  (Homepage specific styles)
+   ================================================ */
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(26, 10, 15, 0.25) 0%,
+      rgba(26, 10, 15, 0.1) 40%,
+      rgba(26, 10, 15, 0.55) 80%,
+      rgba(26, 10, 15, 0.75) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 700px;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero__brand {
+  color: var(--gold-light);
+  letter-spacing: 0.3em;
+}
+
+.hero__title {
+  color: var(--white);
+  font-style: normal;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero__title em {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold-light);
+}
+
+.hero__cta {
+  align-self: flex-start;
+  color: var(--black);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hero__cta:hover {
+  background: var(--white);
+  color: var(--burgundy);
+  border-color: var(--white);
+}
+
+/* ── Intro ── */
+.intro {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.intro__text {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+/* ── Home Collection Grid ── */
+.home-collection {
+  padding: 0 0 80px;
+  background: var(--cream);
+}
+
+.home-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(61, 12, 30, 0.1);
+  border-bottom: 1px solid rgba(61, 12, 30, 0.1);
+  margin-bottom: 56px;
+}
+
+.product-card {
+  border-right: 1px solid rgba(61, 12, 30, 0.1);
+}
+
+.product-card:last-child {
+  border-right: none;
+}
+
+.product-card__link {
+  display: block;
+}
+
+.product-card__img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--cream-2);
+}
+
+.product-card__img img {
+  transition: transform 0.7s ease;
+}
+
+.product-card__link:hover .product-card__img img {
+  transform: scale(1.04);
+}
+
+.product-card__info {
+  padding: 20px 20px 24px;
+  background: var(--cream);
+  border-top: 1px solid rgba(61, 12, 30, 0.08);
+}
+
+.product-card__name {
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.product-card__type {
+  color: var(--text-light);
+  font-size: 9px;
+}
+
+.home-collection__cta {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Coffret ── */
+.coffret {
+  background: var(--cream-2);
+}
+
+.coffret__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+
+.coffret__img {
+  overflow: hidden;
+}
+
+.coffret__img:hover img {
+  transform: scale(1.03);
+}
+
+.coffret__img img {
+  transition: transform 0.7s ease;
+}
+
+.coffret__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 60px 40px;
+}
+
+.coffret__content .section-label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero__content {
+    padding: 0 24px;
+  }
+
+  .home-collection__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .product-card:nth-child(n+3) {
+    border-top: 1px solid rgba(61, 12, 30, 0.1);
+  }
+
+  .coffret__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .coffret__img {
+    height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-bottom: 56px;
+  }
+
+  .hero__content {
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .intro {
+    padding: 56px 0;
+  }
+
+  .intro__text {
+    font-size: 0.95rem;
+  }
+
+  .home-collection__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-card__img {
+    aspect-ratio: 1/1.2;
+  }
+
+  .coffret__img {
+    height: 280px;
+  }
+
+  .coffret__content {
+    padding: 40px 16px;
+  }
+}

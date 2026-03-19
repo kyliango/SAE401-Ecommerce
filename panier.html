@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Panier – AURA Parfums</title>
+  <meta name="description" content="Votre panier AURA – finalisez votre commande de fragrances d'exception.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="panier.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon active-icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+
+  <main class="page-content">
+    <div class="panier-container container">
+      <div class="panier-header reveal">
+        <h1 class="panier-title serif">Mon Panier</h1>
+        <a href="collection.html" class="panier-back label" data-transition>
+          <i class="fa-solid fa-arrow-left" style="margin-right:8px;font-size:10px;"></i>
+          Continuer mes achats
+        </a>
+      </div>
+
+      <div class="panier-layout" id="panierLayout">
+        <div class="panier-items" id="panierItems">
+          <!-- Articles générés en JS -->
+        </div>
+
+        <!-- Empty state (caché par défaut par CSS, géré en JS) -->
+        <div class="panier-empty" id="panierEmpty" style="display:none; text-align:center; padding: 40px 0;">
+          <div class="panier-empty__icon" style="font-size:32px; color:var(--text-light); margin-bottom:16px;">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <h2 class="serif panier-empty__title" style="font-size:1.5rem; color:var(--text-dark);">Votre panier est vide</h2>
+          <p class="panier-empty__sub" style="color:var(--text-light); margin-top:8px;">Découvrez notre collection de fragrances d'exception.</p>
+          <a href="collection.html" class="btn btn-solid" data-transition style="margin-top:24px;">Explorer la collection</a>
+        </div>
+
+        <aside class="panier-summary reveal-right" id="panierSummary">
+          <h2 class="panier-summary__title serif">Récapitulatif</h2>
+          <div class="panier-summary__lines">
+            <div class="summary-line">
+              <span>Sous-total</span>
+              <span id="subtotal">0,00 €</span>
+            </div>
+            <div class="summary-line">
+              <span>Livraison</span>
+              <span class="summary-line--free" id="shippingCost">Calcul...</span>
+            </div>
+            <div class="summary-line summary-line--promo" id="promoLine" style="display:none;">
+              <span>Code promo</span>
+              <span id="promoDiscount">− 0,00 €</span>
+            </div>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-total">
+            <span class="serif">Total</span>
+            <span class="serif" id="totalPrice">0,00 €</span>
+          </div>
+
+          <div class="summary-promo">
+            <label class="form-label label" style="font-size:9px;margin-bottom:8px;display:block;">Code promotionnel</label>
+            <div class="promo-form">
+              <input class="promo-input" type="text" id="promoInput" placeholder="AURA10" aria-label="Code promo">
+              <button class="promo-btn label" id="btnApplyPromo">Appliquer</button>
+            </div>
+            <p class="promo-msg" id="promoMsg"></p>
+          </div>
+          <button class="btn btn-solid panier-checkout" id="btnCheckout">
+            <i class="fa-solid fa-lock" style="margin-right:8px;font-size:10px;"></i>
+            Passer commande
+          </button>
+          <div class="panier-secure">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Paiement 100% sécurisé – SSL</span>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Suggested products -->
+      <section class="panier-suggest">
+        <h2 class="serif panier-suggest__title reveal">Vous aimerez aussi</h2>
+        <div class="panier-suggest__grid">
+          <article class="suggest-card reveal">
+            <a href="product-charnelle.html" class="suggest-card__link" data-transition>
+              <div class="suggest-card__img"><img src="./images/AURA CHARNEL 1.png" alt="Aura Charnelle"></div>
+              <p class="suggest-card__name serif">Aura Charnelle</p>
+              <p class="suggest-card__price">180,00 €</p>
+              <button class="btn btn-outline suggest-add js-add-to-cart" style="font-size:9px;padding:10px 20px;margin-top:8px;" data-name="Aura Charnelle" data-price="180" data-img="./images/AURA CHARNEL 1.png" data-size="50ml">Ajouter</button>
+            </a>
+          </article>
+          <article class="suggest-card reveal" style="transition-delay:0.1s">
+            <a href="product-rose.html" class="suggest-card__link" data-transition>
+              <div class="suggest-card__img"><img src="./images/ROSE IMPERIALE 1.png" alt="Rose Incarnée"></div>
+              <p class="suggest-card__name serif">Rose Incarnée</p>
+              <p class="suggest-card__price">180,00 €</p>
+              <button class="btn btn-outline suggest-add js-add-to-cart" style="font-size:9px;padding:10px 20px;margin-top:8px;" data-name="Rose Incarnée" data-price="180" data-img="./images/ROSE IMPERIALE 1.png" data-size="50ml">Ajouter</button>
+            </a>
+          </article>
+          <article class="suggest-card reveal" style="transition-delay:0.2s">
+            <a href="product-elixir.html" class="suggest-card__link" data-transition>
+              <div class="suggest-card__img"><img src="./images/Group 17 1.png" alt="Élixir Prohibé"></div>
+              <p class="suggest-card__name serif">Élixir Prohibé</p>
+              <p class="suggest-card__price">180,00 €</p>
+              <button class="btn btn-outline suggest-add js-add-to-cart" style="font-size:9px;padding:10px 20px;margin-top:8px;" data-name="Élixir Prohibé" data-price="180" data-img="./images/Group 17 1.png" data-size="50ml">Ajouter</button>
+            </a>
+          </article>
+          <article class="suggest-card reveal" style="transition-delay:0.3s">
+            <a href="product-coffret.html" class="suggest-card__link" data-transition>
+              <div class="suggest-card__img"><img src="./images/prelude format carre.png" alt="Le Prélude"></div>
+              <p class="suggest-card__name serif">Coffret Le Prélude</p>
+              <p class="suggest-card__price">120,00 €</p>
+              <button class="btn btn-outline suggest-add js-add-to-cart" style="font-size:9px;padding:10px 20px;margin-top:8px;" data-name="Le Prélude" data-price="120" data-img="./images/prelude format carre.png" data-size="Coffret">Ajouter</button>
+            </a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Inscrivez-vous à notre Newsletter et recevez les dernières<br>actualités sur les fragrances AURA</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="#" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let promoApplied = false;
+      const PROMO_CODE = 'AURA10';
+      const PROMO_PCT = 0.1;
+
+      const containerItems = document.getElementById('panierItems');
+      const containerEmpty = document.getElementById('panierEmpty');
+      const containerSummary = document.getElementById('panierSummary');
+
+      function fmt(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+
+      function renderCart() {
+        const items = cartGet();
+        
+        if (items.length === 0) {
+          containerItems.style.display = 'none';
+          containerSummary.style.display = 'none';
+          containerEmpty.style.display = 'block';
+          return;
+        }
+
+        containerEmpty.style.display = 'none';
+        containerItems.style.display = 'block';
+        containerSummary.style.display = 'block';
+
+        containerItems.innerHTML = items.map((item, index) => `
+          <div class="cart-item reveal visible" data-index="${index}">
+            <div class="cart-item__img">
+              <img src="${item.img}" alt="${item.name}">
+            </div>
+            <div class="cart-item__info">
+              <div class="cart-item__top">
+                <div>
+                  <p class="cart-item__brand label">AURA PARFUMS</p>
+                  <h3 class="cart-item__name serif">${item.name}</h3>
+                  <p class="cart-item__detail label">${item.size !== 'Coffret' ? 'Huile de Parfum – ' : ''}${item.size}</p>
+                  ${item.engraving ? `<p class="cart-item__engraving" style="font-size:10px; color:var(--gold); margin-top:4px;"><i class="fa-solid fa-pen-nib" style="margin-right:6px;"></i>Gravure : "${item.engraving}"</p>` : ''}
+                </div>
+                <button class="cart-item__remove" aria-label="Supprimer">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="cart-item__bottom">
+                <div class="cart-item__qty">
+                  <button class="qty-btn qty-minus" aria-label="Diminuer">−</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button class="qty-btn qty-plus" aria-label="Augmenter">+</button>
+                </div>
+                <p class="cart-item__price serif">${fmt(item.price * item.qty)}</p>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Attach listeners for remove & qty
+        containerItems.querySelectorAll('.cart-item').forEach(el => {
+          const idx = parseInt(el.dataset.index);
+          
+          el.querySelector('.cart-item__remove').addEventListener('click', () => {
+             el.style.opacity = '0';
+             setTimeout(() => { cartRemoveIndex(idx); renderCart(); }, 300);
+          });
+          el.querySelector('.qty-minus').addEventListener('click', () => {
+             const qty = parseInt(el.querySelector('.qty-val').textContent);
+             cartSetQtyIndex(idx, qty - 1);
+             renderCart();
+          });
+          el.querySelector('.qty-plus').addEventListener('click', () => {
+             const qty = parseInt(el.querySelector('.qty-val').textContent);
+             cartSetQtyIndex(idx, qty + 1);
+             renderCart();
+          });
+        });
+
+        // Recalculate totals
+        let sub = items.reduce((a, i) => a + (i.price * i.qty), 0);
+        let disc = promoApplied ? sub * PROMO_PCT : 0;
+        let shipping = sub >= 200 ? 0 : 5.9;
+        let total = sub - disc + shipping;
+
+        document.getElementById('subtotal').textContent = fmt(sub);
+        document.getElementById('shippingCost').textContent = shipping === 0 ? 'Offerte' : fmt(shipping);
+        document.getElementById('shippingCost').style.color = shipping === 0 ? 'var(--gold)' : '';
+        document.getElementById('totalPrice').textContent = fmt(total);
+
+        if (promoApplied) {
+          document.getElementById('promoLine').style.display = 'flex';
+          document.getElementById('promoDiscount').textContent = '− ' + fmt(disc);
+        }
+      }
+
+      // Initial render
+      renderCart();
+
+      // Overwrite global updateCartBadge so it also triggers re-render of panier if we click a recommend cart
+      const originalUpdate = updateCartBadge;
+      window.updateCartBadge = function() {
+        originalUpdate();
+        renderCart();
+      };
+
+      // Promo
+      document.getElementById('btnApplyPromo').addEventListener('click', () => {
+        const code = document.getElementById('promoInput').value.trim().toUpperCase();
+        const msg = document.getElementById('promoMsg');
+        if (code === PROMO_CODE) {
+          promoApplied = true;
+          msg.textContent = '✓ Code appliqué ! -10%';
+          msg.style.color = 'var(--text-dark)';
+          renderCart();
+        } else {
+          msg.textContent = 'Code invalide.';
+          msg.style.color = '#c0392b';
+        }
+      });
+
+      // Checkout
+      document.getElementById('btnCheckout').addEventListener('click', function() {
+        if (cartGet().length === 0) return alert('Votre panier est vide.');
+        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:8px;"></i> Redirection...';
+        this.style.background = 'var(--text-dark)';
+        this.disabled = true;
+        setTimeout(() => {
+          window.location.href = 'paiement.html';
+        }, 800);
+      });
+    });
+  </script>
+</body>
+</html>

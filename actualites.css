@@ -1,0 +1,93 @@
+/* ================================================
+   AURA – actualites.css
+   ================================================ */
+
+.actu-header {
+  padding: 140px 0 100px;
+  background-color: var(--cream);
+  border-bottom: 1px solid rgba(61,12,30,0.1);
+}
+
+.actu-feed {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.actu-post {
+  padding: 100px 24px;
+  border-bottom: 1px solid rgba(61,12,30,0.1);
+}
+.actu-post:last-child {
+  border-bottom: none;
+}
+
+.actu-post__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.actu-post--reverse .actu-post__container {
+  direction: rtl;
+}
+.actu-post--reverse .actu-post__container > * {
+  direction: ltr; /* On remet le texte en LTR a l'interieur */
+}
+
+.actu-post__media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.actu-post__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.actu-post__text {
+  display: flex;
+  flex-direction: column;
+}
+.actu-post__text .section-label {
+  margin-bottom: 24px;
+}
+.actu-post__text h2 {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+}
+.actu-post__text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .actu-post {
+    padding: 80px 24px;
+  }
+  .actu-post__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .actu-post--reverse .actu-post__container {
+    direction: ltr;
+  }
+}
+@media (max-width: 480px) {
+  .actu-header {
+    padding: 100px 0 60px;
+  }
+  .actu-post {
+    padding: 60px 16px;
+  }
+}

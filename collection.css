@@ -1,0 +1,170 @@
+/* ================================================
+   AURA – collection.css
+   ================================================ */
+
+/* ── Page Header ── */
+.coll-header {
+  padding: 56px 40px 40px;
+  text-align: center;
+  border-bottom: 1px solid rgba(61,12,30,0.1);
+}
+.coll-header__title {
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--text-dark);
+}
+
+/* ── Products Grid ── */
+.coll-products {
+  padding: 0;
+}
+.coll-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.coll-card {
+  border-right: 1px solid rgba(61,12,30,0.1);
+  border-bottom: 1px solid rgba(61,12,30,0.1);
+}
+.coll-card:last-child { border-right: none; }
+.coll-card__link { display: block; }
+.coll-card__img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--cream-2);
+}
+.coll-card__img img {
+  transition: transform 0.7s ease;
+}
+.coll-card__link:hover .coll-card__img img { transform: scale(1.04); }
+.coll-card__hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(61,12,30,0.15);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 24px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.coll-card__link:hover .coll-card__hover { opacity: 1; }
+.coll-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  background: var(--cream);
+}
+.coll-card__name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-dark);
+}
+.coll-card__type {
+  font-size: 9px;
+  color: var(--text-light);
+}
+.coll-card__price {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-top: 4px;
+}
+
+/* ── Sets ── */
+.coll-sets {
+  background: var(--cream);
+}
+.coll-sets__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(61,12,30,0.1);
+}
+.coll-sets__left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-right: 1px solid rgba(61,12,30,0.1);
+}
+.coll-set {
+  padding: 32px 24px;
+  border-right: 1px solid rgba(61,12,30,0.1);
+}
+.coll-set:last-child { border-right: none; }
+.coll-set__name {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.coll-set__sub {
+  font-size: 9px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+.coll-set__bottles {
+  height: 220px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.coll-sets__right {
+  overflow: hidden;
+  min-height: 320px;
+}
+.coll-sets__right img {
+  height: 100%;
+  transition: transform 0.7s ease;
+}
+.coll-sets__right:hover img { transform: scale(1.03); }
+
+/* ── Coffret Le Prélude ── */
+.coll-coffret {
+  position: relative;
+  padding: 0;
+}
+.coll-coffret__inner {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+}
+.coll-coffret__inner img {
+  height: 100%;
+  transition: transform 0.7s ease;
+}
+.coll-coffret__inner:hover img { transform: scale(1.02); }
+.coll-coffret__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,10,15,0.4) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 48px 56px;
+}
+.coll-coffret__label {
+  color: var(--gold-light);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .coll-header { padding: 40px 24px 32px; }
+  .coll-products__grid { grid-template-columns: repeat(2, 1fr); }
+  .coll-card:nth-child(2) { border-right: none; }
+  .coll-sets__grid { grid-template-columns: 1fr; }
+  .coll-sets__left { border-right: none; border-bottom: 1px solid rgba(61,12,30,0.1); }
+  .coll-sets__right { min-height: 260px; }
+  .coll-coffret__inner { height: 380px; }
+}
+@media (max-width: 480px) {
+  .coll-header { padding: 32px 16px 24px; }
+  .coll-products__grid { grid-template-columns: repeat(2, 1fr); }
+  .coll-sets__left { grid-template-columns: 1fr; }
+  .coll-set { border-right: none; border-bottom: 1px solid rgba(61,12,30,0.1); }
+  .coll-set__bottles { height: 180px; }
+  .coll-coffret__inner { height: 280px; }
+}

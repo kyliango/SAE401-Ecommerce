@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Collection – AURA Parfums</title>
+  <meta name="description"
+    content="Découvrez la collection complète de parfums AURA. Onyx, Aura Charnelle, Rose Incarnée, Élixir Prohé – des fragrances d'exception.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="collection.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link active" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link active" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+  <!-- Cart drawer removed - click goes to panier.html instead -->
+
+
+  <!-- ── Page Content ── -->
+  <main class="page-content">
+
+    <!-- Page Header -->
+    <div class="coll-header">
+      <h1 class="coll-header__title serif">LA COLLECTION</h1>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="coll-products">
+      <div class="coll-products__grid">
+
+        <article class="coll-card reveal">
+          <a href="product-onyx.html" class="coll-card__link" data-transition>
+            <div class="coll-card__img">
+              <img src="./images/Onyx.png" alt="AURA Onyx">
+              <div class="coll-card__hover">
+                <span class="btn btn-cream" style="font-size:9px;padding:10px 24px;">Voir le produit</span>
+              </div>
+            </div>
+            <div class="coll-card__info">
+              <span class="coll-card__name serif">Onyx</span>
+              <span class="coll-card__type label">Huile de Parfum</span>
+              <span class="coll-card__price">180€</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="coll-card reveal" style="transition-delay:0.1s">
+          <a href="product-charnelle.html" class="coll-card__link" data-transition>
+            <div class="coll-card__img">
+              <img src="./images/AURA CHARNEL 1.png" alt="AURA Charnelle">
+              <div class="coll-card__hover">
+                <span class="btn btn-cream" style="font-size:9px;padding:10px 24px;">Voir le produit</span>
+              </div>
+            </div>
+            <div class="coll-card__info">
+              <span class="coll-card__name serif">Aura Charnel</span>
+              <span class="coll-card__type label">Huile de Parfum</span>
+              <span class="coll-card__price">180€</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="coll-card reveal" style="transition-delay:0.2s">
+          <a href="product-rose.html" class="coll-card__link" data-transition>
+            <div class="coll-card__img">
+              <img src="./images/ROSE IMPERIALE 1.png" alt="AURA Rose Incarnée">
+              <div class="coll-card__hover">
+                <span class="btn btn-cream" style="font-size:9px;padding:10px 24px;">Voir le produit</span>
+              </div>
+            </div>
+            <div class="coll-card__info">
+              <span class="coll-card__name serif">Rose Incarnée</span>
+              <span class="coll-card__type label">Huile de Parfum</span>
+              <span class="coll-card__price">180€</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="coll-card reveal" style="transition-delay:0.3s">
+          <a href="product-elixir.html" class="coll-card__link" data-transition>
+            <div class="coll-card__img">
+              <img src="./images/Group 17 1.png" alt="AURA Élixir Prohé">
+              <div class="coll-card__hover">
+                <span class="btn btn-cream" style="font-size:9px;padding:10px 24px;">Voir le produit</span>
+              </div>
+            </div>
+            <div class="coll-card__info">
+              <span class="coll-card__name serif">Élixir Prohé</span>
+              <span class="coll-card__type label">Huile de Parfum</span>
+              <span class="coll-card__price">180€</span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sets Section -->
+    <section class="coll-sets">
+      <div class="coll-sets__grid">
+
+
+        <!-- Coffret Le Prélude -->
+        <section class="coll-coffret" id="coffret">
+          <div class="coll-coffret__inner reveal">
+            <img src="./images/prelude format carre.png" alt="Coffret AURA Le Prélude">
+            <a href="product-coffret.html" class="coll-coffret__overlay">
+              <span class="coll-coffret__label section-label">Le Prélude</span>
+            </a>
+          </div>
+        </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Subscribe to our Newsletter and get the latest<br>updates about AURA fragrances by Marouane SALAMI</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="#" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

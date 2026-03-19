@@ -1,0 +1,193 @@
+/* ================================================
+   AURA – esprit.css (Correction)
+   ================================================ */
+
+/* ── Hero ── */
+.esprit-hero {
+  position: relative;
+  width: 100%;
+  height: 85vh; /* Pleine hauteur */
+  min-height: 600px;
+  overflow: hidden;
+  background-color: #1a0a0f;
+  /* Plus de margin-top pour que la navbar transparente s'affiche SUR l'image */
+  display: flex;
+  align-items: center;
+}
+.esprit-hero__img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+.esprit-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(26,10,15,0.2) 0%, rgba(26,10,15,0.7) 100%);
+  z-index: 2;
+}
+.esprit-hero__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 0 10%;
+  text-align: right;
+  margin-top: 50px; /* Pour descendre sous la nav */
+}
+.esprit-hero__content .section-label {
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  display: block;
+}
+.esprit-hero__content h1 {
+  color: var(--white);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
+}
+.esprit-hero__content em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold-light);
+}
+
+@media (max-width: 900px) {
+  .esprit-hero { height: 75vh; min-height: 500px; }
+  .esprit-hero__content { text-align: left; padding: 0 24px; }
+}
+
+/* ── GRID 2x2 ── */
+.esprit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+.esprit-grid__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.esprit-grid__img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.esprit-grid__item--cream {
+  background-color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15%;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+}
+.esprit-grid__item--cream p {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-style: italic;
+  font-weight: 300;
+  max-width: 400px;
+}
+.esprit-grid__item--text {
+  background-color: #2a081a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15%;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+}
+.esprit-grid__item--text p {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  line-height: 1.8;
+  color: var(--cream);
+  max-width: 420px;
+  opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  .esprit-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .esprit-grid__item--cream {
+    display: none;
+  }
+  .esprit-grid__item--text {
+    padding: 20% 10%;
+    aspect-ratio: unset;
+    min-height: 400px;
+  }
+}
+
+/* ── Manifesto & Banner ── */
+.esprit-manifesto {
+  background-color: #fcfbf9; /* Un ton crème très léger, presque blanc */
+  padding: 120px 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(61,12,30,0.05);
+}
+.esprit-manifesto h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--burgundy);
+  margin-bottom: 40px;
+}
+.esprit-manifesto p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.8;
+  color: var(--text-dark);
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+.esprit-banner {
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+}
+.esprit-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) brightness(0.9);
+}
+
+@media (max-width: 900px) {
+  .esprit-manifesto { padding: 80px 24px; }
+  .esprit-banner { height: 40vh; min-height: 300px; }
+}
+
+/* ── CTA Final ── */
+.esprit-cta {
+  background-color: var(--cream);
+  padding: 140px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 48px;
+}
+.esprit-cta__title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-dark);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.esprit-cta__btn {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  padding: 20px 56px;
+  border-radius: 2px;
+}

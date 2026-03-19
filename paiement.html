@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement – AURA Parfums</title>
+  <meta name="description" content="Finalisez votre commande sur la boutique officielle AURA Parfums. Paiement sécurisé.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="paiement.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon active" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link active" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+
+  <main class="page-content" style="background-color: var(--cream);">
+    <header class="checkout-header reveal">
+      <h1 class="serif" style="text-align: center;">Paiement Sécurisé</h1>
+      <p style="text-align: center; font-size: 0.9rem; color: var(--gold);">Votre initiation touche à sa fin</p>
+    </header>
+
+    <div class="checkout-container reveal">
+      
+      <!-- Colonne Formulaire -->
+      <div class="checkout-form">
+        <h2 class="form-title">Informations de livraison</h2>
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <input type="text" placeholder="Prénom" class="form-input" required aria-label="Prénom">
+            <input type="text" placeholder="Nom" class="form-input" required aria-label="Nom">
+          </div>
+          <input type="email" placeholder="Adresse E-mail" class="form-input" required aria-label="Email">
+          <input type="text" placeholder="Adresse Postale" class="form-input" required aria-label="Adresse">
+          <div class="form-row">
+            <input type="text" placeholder="Code Postal" class="form-input" required aria-label="Code Postal">
+            <input type="text" placeholder="Ville" class="form-input" required aria-label="Ville">
+          </div>
+          <select class="form-input" required aria-label="Pays">
+            <option value="FR">France</option>
+            <option value="BE">Belgique</option>
+            <option value="CH">Suisse</option>
+          </select>
+
+          <h2 class="form-title" style="margin-top:40px;">Mode de Paiement</h2>
+          <div class="payment-methods">
+            <label class="payment-method active">
+              <input type="radio" name="payment" value="card" checked>
+              <span>Carte Bancaire</span>
+              <i class="fa-brands fa-cc-visa"></i>
+              <i class="fa-brands fa-cc-mastercard"></i>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="payment" value="paypal">
+              <span>PayPal</span>
+              <i class="fa-brands fa-paypal"></i>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="payment" value="applepay">
+              <span>Apple Pay</span>
+              <i class="fa-brands fa-cc-apple-pay"></i>
+            </label>
+          </div>
+
+          <div class="card-details">
+            <input type="text" placeholder="Numéro de carte" class="form-input" aria-label="Numéro de carte">
+            <div class="form-row">
+              <input type="text" placeholder="MM/AA" class="form-input" aria-label="Date d'expiration">
+              <input type="text" placeholder="CVV" class="form-input" aria-label="Code de sécurité">
+            </div>
+            <input type="text" placeholder="Nom sur la carte" class="form-input" aria-label="Nom titulaire">
+          </div>
+
+          <button type="button" class="btn btn-solid checkout-submit" onclick="simulatePayment(this)">
+            PAYER MA COMMANDE
+          </button>
+          <div class="secure-badge">
+            <i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Paiement sécurisé chiffré de bout en bout
+          </div>
+        </form>
+      </div>
+
+      <!-- Colonne Résumé -->
+      <div class="checkout-summary">
+        <h2 class="form-title">Résumé de votre commande</h2>
+        <div id="paymentItems" class="payment-items">
+          <!-- Injecté par JS -->
+        </div>
+        
+        <div class="summary-line">
+          <span>Sous-total</span>
+          <span id="paymentSubtotal">0 €</span>
+        </div>
+        <div class="summary-line">
+          <span>Livraison Express AURA</span>
+          <span>Offerte</span>
+        </div>
+        <div class="summary-line summary-total">
+          <span>Total</span>
+          <span id="paymentTotal">0 €</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Inscrivez-vous à notre Newsletter et recevez les dernières<br>actualités sur les fragrances AURA</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="#" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Popup Succès -->
+  <div id="successPopup" class="success-popup">
+    <div class="success-popup__content">
+      <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+      <h2 class="serif">Merci pour votre commande</h2>
+      <p>Votre initiation commence bientôt. Vous allez recevoir un email de confirmation.</p>
+      <a href="index.html" class="btn btn-solid" style="margin-top: 24px;">Retourner à l'accueil</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Logique locale de la page de paiement
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = cartGet();
+      const container = document.getElementById('paymentItems');
+      const subEl = document.getElementById('paymentSubtotal');
+      const totEl = document.getElementById('paymentTotal');
+      
+      if(items.length === 0) {
+        container.innerHTML = '<p style="opacity:0.7; font-size:0.9rem;">Votre panier est vide.</p>';
+        subEl.textContent = '0 €';
+        totEl.textContent = '0 €';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      
+      items.forEach(item => {
+        const itemTotal = parseInt(item.price) * parseInt(item.qty);
+        total += itemTotal;
+        html += `
+          <div class="pay-item">
+            <div class="pay-item__img-wrap">
+              <img src="${item.img}" alt="${item.name}">
+              <span class="pay-item__qty-badge">${item.qty}</span>
+            </div>
+            <div class="pay-item__info">
+              <strong class="serif" style="font-size:1.1rem; color:var(--text-dark);">${item.name}</strong>
+              <span style="display:block; font-size:0.8rem; color:var(--text-light); margin-top:2px;">${item.size}ml - Extrait Absolu</span>
+              ${item.engraving ? `<span style="display:block; font-size:0.75rem; color:var(--gold); margin-top:4px;">Gravure: "${item.engraving}"</span>` : ''}
+            </div>
+            <div class="pay-item__price">${itemTotal} €</div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+      subEl.textContent = total + ' €';
+      totEl.textContent = total + ' €';
+
+      updateCartBadge();
+    });
+
+    // Sélection du mode de paiement
+    document.querySelectorAll('.payment-method input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        document.querySelectorAll('.payment-method').forEach(label => label.classList.remove('active'));
+        e.target.closest('.payment-method').classList.add('active');
+        
+        const cardDetails = document.querySelector('.card-details');
+        if (e.target.value === 'card') {
+          cardDetails.style.display = 'block';
+        } else {
+          cardDetails.style.display = 'none';
+        }
+      });
+    });
+
+    function simulatePayment(btn) {
+      if(cartGet().length === 0) {
+        alert("Votre panier est vide.");
+        return;
+      }
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Traitement...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        // Vider le panier
+        cartClear();
+        updateCartBadge();
+        
+        // Afficher popup
+        document.getElementById('successPopup').classList.add('open');
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

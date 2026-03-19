@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Esprit AURA – Philosophie & Art du Parfum</title>
+  <meta name="description" content="L'Esprit AURA – Découvrez la philosophie derrière nos fragrances. L'art du parfum comme rituel sensoriel, une expérience rare et intime.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="esprit.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav nav--dark" id="nav">
+    <a href="index.html" class="nav__logo" data-transition>
+      <img src="./images/logo_violet-removebg-preview.png" alt="AURA Parfums">
+    </a>
+    <ul class="nav__links">
+      <li><a href="collection.html" class="nav__link" data-transition>La Collection</a></li>
+      <li><a href="esprit-aura.html" class="nav__link active" data-transition>L'Esprit AURA</a></li>
+      <li><a href="actualites.html" class="nav__link" data-transition>Actualités</a></li>
+    </ul>
+    <div class="nav__icons">
+      <span class="nav__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <a href="panier.html" class="nav__icon" data-transition>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="login.html" class="nav__icon" data-transition>
+        <i class="fa-regular fa-user"></i>
+      </a>
+    </div>
+    <div class="nav__burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="collection.html" class="nav__link" data-transition>La Collection</a>
+    <a href="esprit-aura.html" class="nav__link active" data-transition>L'Esprit AURA</a>
+    <a href="actualites.html" class="nav__link" data-transition>Actualités</a>
+    <a href="panier.html" class="nav__link" data-transition>Mon Panier</a>
+    <a href="login.html" class="nav__link" data-transition>Mon Compte</a>
+  </div>
+  <!-- Cart drawer removed -->
+
+
+  <!-- ── HERO ── -->
+  <section class="esprit-hero">
+    <img src="./images/image hero esprit.png" alt="Dos de femme dans l'ombre AURA" loading="eager" class="esprit-hero__img">
+    <div class="esprit-hero__overlay"></div>
+    <div class="esprit-hero__content reveal">
+      <p class="section-label">L'Esprit AURA</p>
+      <h1 class="h-display">L'<em>initiation</em><br>commence ici.</h1>
+    </div>
+  </section>
+
+  <!-- ── GRID 2x2 ── -->
+  <section class="esprit-grid">
+    <!-- Haut Gauche : Image Bras -->
+    <div class="esprit-grid__item">
+      <img src="./images/huile poignet.png" alt="Application de l'huile AURA sur le poignet" class="esprit-grid__img">
+    </div>
+    <!-- Haut Droit : Citation crème -->
+    <div class="esprit-grid__item esprit-grid__item--cream">
+      <p>
+        "Choisir ce parfum, c'est choisir de flirter avec la nuit, d'embrasser le silence et de laisser votre peau raconter une histoire que seul le parfum sait écrire. Une fragrance d'une intensité rare, ancrée dans les bois, épicée par le temps, relevée par la grâce. Chaque effluve est une déclaration, discète mais inoubliable."
+      </p>
+    </div>
+    <!-- Bas Gauche : Texte sur fond Bordeaux -->
+    <div class="esprit-grid__item esprit-grid__item--text">
+      <p>
+        Oubliez tout ce que vous pensiez savoir du parfum. L'esprit AURA, c'est l'art d'un geste secret et charnel. Une invitation au silence et à l'intimité. Élaborées en concentrés absolus, nos huiles précieuses se fondent à la peau pour révéler une signature unique, discrète et inoubliable, qui n'appartient qu'à vous.
+      </p>
+    </div>
+    <!-- Bas Droit : Image Pipette -->
+    <div class="esprit-grid__item">
+      <img src="./images/flacon utilisation.png" alt="Pipette dorée AURA" class="esprit-grid__img">
+    </div>
+  </section>
+
+  <!-- ── MANIFESTE AURA ── -->
+  <section class="esprit-manifesto">
+    <div class="container reveal">
+      <h2 class="serif">Le Temps et la Peau</h2>
+      <p>
+        Un parfum AURA ne s’impose pas au monde, il s'en approche subtilement. Nos extraits sur-concentrés exigent du temps : le temps de chauffer sur la peau, le temps de se déployer. Il n'y a pas d'alcool pour évaporer la fragrance dans l'air de façon tapageuse. Seules nos huiles précieuses subsistent, fusionnant avec l'odeur naturelle de celle ou celui qui les porte. C’est la promesse d'une harmonie absolue.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── BANDEAU INGRÉDIENTS ── -->
+  <section class="esprit-banner">
+    <img src="./images/ingredient.png" alt="Ingrédients précieux AURA" class="esprit-banner__img" loading="lazy">
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section class="esprit-cta">
+    <h2 class="serif esprit-cta__title reveal">VOTRE INITIATION VOUS ATTEND.</h2>
+    <a href="product-coffret.html" class="btn btn-solid esprit-cta__btn reveal" style="transition-delay:0.1s;" data-transition>DÉCOUVREZ LE COFFRET PRÉLUDE</a>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer__newsletter">
+      <p>Inscrivez-vous à notre Newsletter et recevez les dernières<br>actualités sur les fragrances AURA</p>
+      <form class="footer__form" onsubmit="return false;">
+        <input type="email" placeholder="E-mail" aria-label="Adresse email">
+        <button type="submit" aria-label="S'inscrire">&#9658;</button>
+      </form>
+    </div>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__col-title">Customer Service</p>
+        <a href="#" class="footer__link">FAQ</a>
+        <a href="#" class="footer__link">Contact Us</a>
+        <a href="#" class="footer__link">Legal Information</a>
+        <a href="#" class="footer__link">Terms of Use</a>
+      </div>
+      <div>
+        <p class="footer__col-title">News</p>
+        <a href="#" class="footer__link">Stories</a>
+        <a href="#" class="footer__link">PR Contact</a>
+      </div>
+      <div>
+        <p class="footer__col-title">Follow Us</p>
+        <a href="#" class="footer__link">Instagram</a>
+        <a href="#" class="footer__link">Facebook</a>
+        <a href="#" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 AURA Parfums. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
