@@ -58,16 +58,16 @@
         <h2 class="form-title">Informations de livraison</h2>
         <form onsubmit="return false;">
           <div class="form-row">
-            <input type="text" placeholder="Prénom" class="form-input" required aria-label="Prénom">
-            <input type="text" placeholder="Nom" class="form-input" required aria-label="Nom">
+            <input type="text" id="payPrenom" placeholder="Prénom" class="form-input" required aria-label="Prénom">
+            <input type="text" id="payNom" placeholder="Nom" class="form-input" required aria-label="Nom">
           </div>
-          <input type="email" placeholder="Adresse E-mail" class="form-input" required aria-label="Email">
-          <input type="text" placeholder="Adresse Postale" class="form-input" required aria-label="Adresse">
+          <input type="email" id="payEmail" placeholder="Adresse E-mail" class="form-input" required aria-label="Email">
+          <input type="text" id="payAdresse" placeholder="Adresse Postale" class="form-input" required aria-label="Adresse">
           <div class="form-row">
-            <input type="text" placeholder="Code Postal" class="form-input" required aria-label="Code Postal">
-            <input type="text" placeholder="Ville" class="form-input" required aria-label="Ville">
+            <input type="text" id="payCP" placeholder="Code Postal" class="form-input" required aria-label="Code Postal">
+            <input type="text" id="payVille" placeholder="Ville" class="form-input" required aria-label="Ville">
           </div>
-          <select class="form-input" required aria-label="Pays">
+          <select id="payPays" class="form-input" required aria-label="Pays">
             <option value="FR">France</option>
             <option value="BE">Belgique</option>
             <option value="CH">Suisse</option>
@@ -176,49 +176,83 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-  <script>
+  <script type="module" src="script.js"></script>
+  <script type="module">
+    import { auth, db } from './firebase-config.js';
+    import { doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+    let currentUserUID = null;
+
+    if (auth) {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          currentUserUID = user.uid;
+          document.getElementById('payEmail').value = user.email;
+          if (db) {
+            try {
+              const userDoc = await getDoc(doc(db, 'users', user.uid));
+              if (userDoc.exists()) {
+                const data = userDoc.data();
+                if(data.prenom) document.getElementById('payPrenom').value = data.prenom;
+                if(data.nom) document.getElementById('payNom').value = data.nom;
+                if(data.adresse) document.getElementById('payAdresse').value = data.adresse;
+                if(data.cp) document.getElementById('payCP').value = data.cp;
+                if(data.ville) document.getElementById('payVille').value = data.ville;
+                if(data.pays) document.getElementById('payPays').value = data.pays;
+              }
+            } catch(e) {
+              console.warn("Could not fetch user profile info", e);
+            }
+          }
+        }
+      });
+    }
+
     // Logique locale de la page de paiement
     document.addEventListener('DOMContentLoaded', () => {
-      const items = cartGet();
-      const container = document.getElementById('paymentItems');
-      const subEl = document.getElementById('paymentSubtotal');
-      const totEl = document.getElementById('paymentTotal');
-      
-      if(items.length === 0) {
-        container.innerHTML = '<p style="opacity:0.7; font-size:0.9rem;">Votre panier est vide.</p>';
-        subEl.textContent = '0 €';
-        totEl.textContent = '0 €';
-        return;
-      }
+      // Need a small timeout to ensure script.js has mounted the global variables
+      setTimeout(() => {
+        const items = window.cartGet ? window.cartGet() : [];
+        const container = document.getElementById('paymentItems');
+        const subEl = document.getElementById('paymentSubtotal');
+        const totEl = document.getElementById('paymentTotal');
+        
+        if(items.length === 0) {
+          container.innerHTML = '<p style="opacity:0.7; font-size:0.9rem;">Votre panier est vide.</p>';
+          subEl.textContent = '0 €';
+          totEl.textContent = '0 €';
+          return;
+        }
 
-      let html = '';
-      let total = 0;
-      
-      items.forEach(item => {
-        const itemTotal = parseInt(item.price) * parseInt(item.qty);
-        total += itemTotal;
-        html += `
-          <div class="pay-item">
-            <div class="pay-item__img-wrap">
-              <img src="${item.img}" alt="${item.name}">
-              <span class="pay-item__qty-badge">${item.qty}</span>
+        let html = '';
+        let total = 0;
+        
+        items.forEach(item => {
+          const itemTotal = parseInt(item.price) * parseInt(item.qty);
+          total += itemTotal;
+          html += `
+            <div class="pay-item">
+              <div class="pay-item__img-wrap">
+                <img src="${item.img}" alt="${item.name}">
+                <span class="pay-item__qty-badge">${item.qty}</span>
+              </div>
+              <div class="pay-item__info">
+                <strong class="serif" style="font-size:1.1rem; color:var(--text-dark);">${item.name}</strong>
+                <span style="display:block; font-size:0.8rem; color:var(--text-light); margin-top:2px;">${item.size}ml - Extrait Absolu</span>
+                ${item.engraving ? `<span style="display:block; font-size:0.75rem; color:var(--gold); margin-top:4px;">Gravure: "${item.engraving}"</span>` : ''}
+              </div>
+              <div class="pay-item__price">${itemTotal} €</div>
             </div>
-            <div class="pay-item__info">
-              <strong class="serif" style="font-size:1.1rem; color:var(--text-dark);">${item.name}</strong>
-              <span style="display:block; font-size:0.8rem; color:var(--text-light); margin-top:2px;">${item.size}ml - Extrait Absolu</span>
-              ${item.engraving ? `<span style="display:block; font-size:0.75rem; color:var(--gold); margin-top:4px;">Gravure: "${item.engraving}"</span>` : ''}
-            </div>
-            <div class="pay-item__price">${itemTotal} €</div>
-          </div>
-        `;
-      });
-      
-      container.innerHTML = html;
-      subEl.textContent = total + ' €';
-      totEl.textContent = total + ' €';
+          `;
+        });
+        
+        container.innerHTML = html;
+        subEl.textContent = total + ' €';
+        totEl.textContent = total + ' €';
 
-      updateCartBadge();
+        if (window.updateCartBadge) window.updateCartBadge();
+      }, 50);
     });
 
     // Sélection du mode de paiement
@@ -236,8 +270,8 @@
       });
     });
 
-    function simulatePayment(btn) {
-      if(cartGet().length === 0) {
+    window.simulatePayment = async function(btn) {
+      if(!window.cartGet || window.cartGet().length === 0) {
         alert("Votre panier est vide.");
         return;
       }
@@ -245,10 +279,28 @@
       btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Traitement...';
       btn.disabled = true;
       
+      if (db) {
+        try {
+          const sid = localStorage.getItem('aura_sid');
+          if (sid) {
+            const cartRef = doc(db, 'carts', sid);
+            const updateData = {
+              status: 'purchased',
+              purchasedAt: new Date().toISOString()
+            };
+            if (currentUserUID) {
+              updateData.userId = currentUserUID; // Lier la commande à l'user Firebase
+            }
+            await updateDoc(cartRef, updateData);
+          }
+        } catch(e) {
+          console.warn("Erreur de mise à jour Firestore", e);
+        }
+      }
+
       setTimeout(() => {
         // Vider le panier
-        cartClear();
-        updateCartBadge();
+        if (window.cartClear) window.cartClear();
         
         // Afficher popup
         document.getElementById('successPopup').classList.add('open');

@@ -49,7 +49,7 @@
 
       <!-- Left: editorial image -->
       <div class="login-img reveal-left">
-        <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=90&auto=format&fit=crop" alt="Flacon AURA – ambiance">
+        <img src="./images/hero news.png" alt="Flacon AURA – ambiance">
         <div class="login-img__overlay">
           <p class="login-img__quote serif">« Le parfum est la forme<br>la plus intense de la mémoire. »</p>
         </div>
@@ -152,46 +152,238 @@
           <p class="login-switch">Déjà un compte ? <button type="button" onclick="switchTab('login')" class="login-switch-link">Se connecter</button></p>
         </form>
 
+        <!-- ACCOUNT VIEW -->
+        <div id="accountView" style="display:none; width:100%; max-width:400px; margin:auto; padding-top:40px;">
+          <h1 class="login-title serif" style="margin-bottom:8px;">Mon Espace</h1>
+          <p id="accountEmail" style="color:var(--text-light); margin-bottom:24px; font-size:0.9rem;"></p>
+
+          <div id="adminPanel" style="display:none; padding:16px; background:rgba(220,185,118,0.1); border:1px solid var(--gold); border-radius:4px; margin-bottom:24px;">
+            <p style="font-size:0.85rem; color:var(--gold); margin-bottom:12px;"><i class="fa-solid fa-crown" style="margin-right:8px;"></i>Compte Administrateur</p>
+            <a href="admin-dashboard.html" class="btn btn-outline" style="display:block; text-align:center;">Accéder au Dashboard</a>
+          </div>
+
+          <form id="profileForm" onsubmit="handleSaveProfile(event)">
+            <h2 class="serif" style="font-size:1.2rem; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">Mes Informations de Livraison</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label label">Prénom</label>
+                <input class="form-input" type="text" id="profPrenom" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label label">Nom</label>
+                <input class="form-input" type="text" id="profNom" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label label">Adresse Postale</label>
+              <input class="form-input" type="text" id="profAdresse" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label label">Code Postal</label>
+                <input class="form-input" type="text" id="profCP" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label label">Ville</label>
+                <input class="form-input" type="text" id="profVille" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label label">Pays</label>
+              <select class="form-input" id="profPays" required>
+                <option value="FR">France</option>
+                <option value="BE">Belgique</option>
+                <option value="CH">Suisse</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-solid login-btn" style="margin-top:24px;" id="btnSaveProfile">
+              Enregistrer mes infos
+            </button>
+            <button type="button" class="btn btn-outline" style="margin-top:12px; border-color:transparent; color:var(--text-light); width:100%;" onclick="handleLogout()">
+              Se déconnecter
+            </button>
+          </form>
+        </div>
+
       </div>
     </div>
   </main>
 
-  <script src="script.js"></script>
-  <script>
-    function switchTab(tab) {
-      const formLogin    = document.getElementById('formLogin');
-      const formRegister = document.getElementById('formRegister');
-      const tabLogin     = document.getElementById('tabLogin');
-      const tabRegister  = document.getElementById('tabRegister');
+  <script type="module" src="script.js"></script>
+  <script type="module">
+    import { auth, db } from './firebase-config.js';
+    import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const accountView = document.getElementById('accountView');
+    const formLogin = document.getElementById('formLogin');
+    const formRegister = document.getElementById('formRegister');
+    const loginTabs = document.querySelector('.login-tabs');
+
+    let currentUser = null;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUser = user;
+        // Connecté : Cacher les formulaires, afficher compte
+        loginTabs.style.display = 'none';
+        formLogin.style.display = 'none';
+        formRegister.style.display = 'none';
+        accountView.style.display = 'block';
+
+        document.getElementById('accountEmail').innerText = user.email;
+
+        // Restriction Admin - On considère admin@aura.fr ou l'email admin que vous choisissez
+        if (user.email === 'admin@aura.fr') {
+          document.getElementById('adminPanel').style.display = 'block';
+        } else {
+          document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        // Récupérer les infos Firestore
+        if (db) {
+          try {
+            const userDoc = await getDoc(doc(db, 'users', user.uid));
+            if (userDoc.exists()) {
+              const data = userDoc.data();
+              if(data.prenom) document.getElementById('profPrenom').value = data.prenom;
+              if(data.nom) document.getElementById('profNom').value = data.nom;
+              if(data.adresse) document.getElementById('profAdresse').value = data.adresse;
+              if(data.cp) document.getElementById('profCP').value = data.cp;
+              if(data.ville) document.getElementById('profVille').value = data.ville;
+              if(data.pays) document.getElementById('profPays').value = data.pays;
+            }
+          } catch(e) {
+            console.error("Erreur lecture informations", e);
+          }
+        }
+      } else {
+        currentUser = null;
+        // Déconnecté : Afficher formulaires
+        loginTabs.style.display = 'flex';
+        formLogin.style.display = 'flex';
+        formRegister.style.display = 'none';
+        accountView.style.display = 'none';
+      }
+    });
+
+    window.handleLogout = function() {
+      signOut(auth).then(() => {
+        window.location.reload();
+      });
+    }
+
+    window.handleSaveProfile = async function(e) {
+      e.preventDefault();
+      if (!currentUser || !db) return;
+      
+      const btn = document.getElementById('btnSaveProfile');
+      const originalText = btn.textContent;
+      btn.textContent = 'Enregistrement...';
+      btn.disabled = true;
+
+      try {
+        await setDoc(doc(db, 'users', currentUser.uid), {
+          prenom: document.getElementById('profPrenom').value,
+          nom: document.getElementById('profNom').value,
+          adresse: document.getElementById('profAdresse').value,
+          cp: document.getElementById('profCP').value,
+          ville: document.getElementById('profVille').value,
+          pays: document.getElementById('profPays').value
+        }, { merge: true });
+
+        btn.textContent = '✓ Informations sauvegardées';
+        btn.style.background = '#5a1630';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2000);
+      } catch(error) {
+        console.error("Erreur sauvegarde", error);
+        alert("Erreur lors de la sauvegarde : " + error.message);
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    window.switchTab = function(tab) {
       if (tab === 'login') {
         formLogin.style.display = 'flex';
         formRegister.style.display = 'none';
-        tabLogin.classList.add('login-tab--active');
-        tabRegister.classList.remove('login-tab--active');
+        document.getElementById('tabLogin').classList.add('login-tab--active');
+        document.getElementById('tabRegister').classList.remove('login-tab--active');
       } else {
         formLogin.style.display = 'none';
         formRegister.style.display = 'flex';
-        tabRegister.classList.add('login-tab--active');
-        tabLogin.classList.remove('login-tab--active');
+        document.getElementById('tabRegister').classList.add('login-tab--active');
+        document.getElementById('tabLogin').classList.remove('login-tab--active');
       }
     }
-    function togglePwd(id) {
+    window.togglePwd = function(id) {
       const input = document.getElementById(id);
       input.type = input.type === 'password' ? 'text' : 'password';
     }
-    function handleLogin(e) {
+    
+    window.handleLogin = function(e) {
       e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
       const btn = e.target.querySelector('.login-btn');
-      btn.textContent = '✓ Connecté';
-      btn.style.background = '#5a1630';
-      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      const originalText = btn.textContent;
+      
+      btn.textContent = 'Connexion...';
+      btn.style.opacity = '0.8';
+      btn.disabled = true;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // L'état Auth onAuthStateChanged va gérer la transition
+          btn.textContent = '✓ Connecté';
+          btn.style.background = '#5a1630';
+        })
+        .catch((error) => {
+          console.error("Erreur de connexion", error);
+          alert("Identifiants incorrects ou erreur.");
+          btn.textContent = originalText;
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        });
     }
-    function handleRegister(e) {
+
+    window.handleRegister = function(e) {
       e.preventDefault();
+      const email = document.getElementById('emailReg').value;
+      const password = document.getElementById('passwordReg').value;
+      const prenom = document.getElementById('prenom').value;
+      const nom = document.getElementById('nom').value;
       const btn = e.target.querySelector('.login-btn');
-      btn.textContent = '✓ Compte créé !';
-      btn.style.background = '#5a1630';
-      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      const originalText = btn.textContent;
+
+      btn.textContent = 'Création...';
+      btn.style.opacity = '0.8';
+      btn.disabled = true;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          // Store basic info
+          if (db) {
+            await setDoc(doc(db, 'users', userCredential.user.uid), {
+              prenom: prenom,
+              nom: nom,
+              email: email
+            });
+          }
+          btn.textContent = '✓ Compte créé !';
+          btn.style.background = '#5a1630';
+        })
+        .catch((error) => {
+          console.error("Erreur de création", error);
+          alert("Erreur lors de la création : " + error.message);
+          btn.textContent = originalText;
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        });
     }
   </script>
 </body>

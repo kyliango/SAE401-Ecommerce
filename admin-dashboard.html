@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA - Admin Dashboard</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+  <nav class="admin-nav" id="adminNav">
+    <div class="admin-nav__logo serif">AURA <span class="admin-nav__label label">Admin</span></div>
+    <div class="admin-nav__actions">
+      <a href="index.html" class="btn btn-outline" style="padding:8px 16px; font-size:10px;"><i class="fa-solid fa-store" style="margin-right:8px;"></i>Retour à la boutique</a>
+      <button class="btn btn-solid" id="btnLogout" style="padding:8px 16px; font-size:10px;"><i class="fa-solid fa-right-from-bracket" style="margin-right:8px;"></i>Déconnexion</button>
+    </div>
+  </nav>
+
+  <main class="admin-main">
+    <div id="authGate" class="admin-gate">
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+      <p class="serif" style="margin-top:16px;">Vérification de l'accès sécurisé...</p>
+    </div>
+
+    <div id="dashboardContent" class="admin-dashboard" style="display: none;">
+      <header class="admin-header reveal">
+        <h1 class="serif">Tableau de bord</h1>
+        <p class="label" style="color:var(--text-light); margin-top:8px;">Vue en temps réel des performances</p>
+      </header>
+
+      <div id="statsWarning" class="admin-warning" style="display: none;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Firebase n'est pas configuré. Affichez TUTORIAL.md pour finaliser l'installation.</span>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card reveal" style="transition-delay:0.1s">
+          <div class="stat-card__icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
+          <div class="stat-card__content">
+            <h3 class="label">Paniers Abandonnés / Live</h3>
+            <div class="stat-card__value serif" id="statAbandoned">0</div>
+          </div>
+        </div>
+
+        <div class="stat-card reveal" style="transition-delay:0.2s">
+          <div class="stat-card__icon"><i class="fa-solid fa-bag-shopping"></i></div>
+          <div class="stat-card__content">
+            <h3 class="label">Commandes Finalisées</h3>
+            <div class="stat-card__value serif" id="statPurchased">0</div>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card--gold reveal" style="transition-delay:0.3s">
+          <div class="stat-card__icon"><i class="fa-solid fa-coins"></i></div>
+          <div class="stat-card__content">
+            <h3 class="label">Revenu Total</h3>
+            <div class="stat-card__value serif" id="statRevenue">0 €</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-section reveal" style="transition-delay:0.4s">
+        <h2 class="serif admin-section__title">Produits les plus populaires (ajoutés au panier)</h2>
+        <div class="products-table-wrap">
+          <table class="products-table">
+            <thead>
+              <tr class="label">
+                <th>Nom du produit</th>
+                <th style="text-align:right;">Articles engagés</th>
+              </tr>
+            </thead>
+            <tbody id="productList">
+              <!-- Injecté en JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

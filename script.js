@@ -2,19 +2,52 @@
 //  AURA – Main Script (localStorage cart)
 // ================================================
 
+import { db } from './firebase-config.js';
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+// ── SESSION HELPER ──────────────────────────────
+function getSessionId() {
+  let sid = localStorage.getItem('aura_sid');
+  if (!sid) {
+    sid = 'sess_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    localStorage.setItem('aura_sid', sid);
+  }
+  return sid;
+}
+
 // ── CART HELPERS ───────────────────────────────
 const CART_KEY = 'aura_cart';
 
-function cartGet() {
+window.cartGet = function cartGet() {
   try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
   catch { return []; }
 }
 
-function cartSave(items) {
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
+async function syncCartToFirestore(items) {
+  if (!db) return; // If Firebase not configured
+  try {
+    const sid = getSessionId();
+    let sub = items.reduce((a, i) => a + (i.price * i.qty), 0);
+    let totalItems = items.reduce((a, i) => a + i.qty, 0);
+    const cartRef = doc(db, 'carts', sid);
+    await setDoc(cartRef, {
+      items: items,
+      totalPrice: sub,
+      totalItems: totalItems,
+      status: 'abandoned', // Defaults to abandoned until checkout
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+  } catch(e) {
+    console.warn("Could not sync to Firestore", e);
+  }
 }
 
-function cartAdd(item) {
+window.cartSave = function cartSave(items) {
+  localStorage.setItem(CART_KEY, JSON.stringify(items));
+  syncCartToFirestore(items);
+}
+
+window.cartAdd = function cartAdd(item) {
   const items = cartGet();
   // We consider an item "identical" if it has the same id, size AND engraving
   const existing = items.find(i => i.id === item.id && i.size === item.size && i.engraving === item.engraving);
@@ -27,7 +60,7 @@ function cartAdd(item) {
   updateCartBadge();
 }
 
-function cartRemoveIndex(idx) {
+window.cartRemoveIndex = function cartRemoveIndex(idx) {
   const items = cartGet();
   if (idx >= 0 && idx < items.length) {
     items.splice(idx, 1);
@@ -36,11 +69,11 @@ function cartRemoveIndex(idx) {
   }
 }
 
-function cartSetQtyIndex(idx, qty) {
+window.cartSetQtyIndex = function cartSetQtyIndex(idx, qty) {
   const items = cartGet();
   if (idx < 0 || idx >= items.length) return;
   if (qty < 1) { 
-    cartRemoveIndex(idx); 
+    window.cartRemoveIndex(idx); 
     return; 
   }
   items[idx].qty = qty;
@@ -48,12 +81,12 @@ function cartSetQtyIndex(idx, qty) {
   updateCartBadge();
 }
 
-function cartClear() {
+window.cartClear = function cartClear() {
   localStorage.removeItem(CART_KEY);
   updateCartBadge();
 }
 
-function updateCartBadge() {
+window.updateCartBadge = function updateCartBadge() {
   const items = cartGet();
   const total = items.reduce((a, i) => a + i.qty, 0);
   document.querySelectorAll('.cart-count').forEach(el => {
